@@ -1,0 +1,130 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Reading the CSV file with the correct separator
+data = pd.read_csv("population.csv", sep=',')
+
+# Print unique country names to verify the correct names
+print(data['Country Name'].unique())
+
+# Specify the countries you want to plot
+countries_to_plot = ['India', 'China', 'United States']  # Replace with actual country names from the print output
+
+# Filter data for specific countries
+filtered_data = data[data['Country Name'].isin(countries_to_plot)]
+
+# Debugging: Print the filtered data to check if it contains the expected rows
+print(filtered_data)
+
+# Check if the '1995' column has data for the selected countries
+print(filtered_data['1995'])
+
+# Check for any non-numeric values or missing data in the '1995' column
+print(filtered_data['1995'].dtype)
+print(filtered_data['1995'].isnull().sum())
+
+# Create the bar chart
+plt.bar(filtered_data['Country Name'], filtered_data['1995'])
+plt.xlabel('Country Name')
+plt.ylabel('Population in 1995')
+plt.title('Population of selected countries in 1995')
+plt.xticks(rotation=45, ha='right')  # Rotate the x-axis labels for readability
+plt.show()
+
+
+['Aruba' 'Africa Eastern and Southern' 'Afghanistan'
+ 'Africa Western and Central' 'Angola' 'Albania' 'Andorra' 'Arab World'
+ 'United Arab Emirates' 'Argentina' 'Armenia' 'American Samoa'
+ 'Antigua and Barbuda' 'Australia' 'Austria' 'Azerbaijan' 'Burundi'
+ 'Belgium' 'Benin' 'Burkina Faso' 'Bangladesh' 'Bulgaria' 'Bahrain'
+ 'Bahamas, The' 'Bosnia and Herzegovina' 'Belarus' 'Belize' 'Bermuda'
+ 'Bolivia' 'Brazil' 'Barbados' 'Brunei Darussalam' 'Bhutan' 'Botswana'
+ 'Central African Republic' 'Canada' 'Central Europe and the Baltics'
+ 'Switzerland' 'Channel Islands' 'Chile' 'China' "Cote d'Ivoire"
+ 'Cameroon' 'Congo, Dem. Rep.' 'Congo, Rep.' 'Colombia' 'Comoros'
+ 'Cabo Verde' 'Costa Rica' 'Caribbean small states' 'Cuba' 'Curacao'
+ 'Cayman Islands' 'Cyprus' 'Czechia' 'Germany' 'Djibouti' 'Dominica'
+ 'Denmark' 'Dominican Republic' 'Algeria'
+ 'East Asia & Pacific (excluding high income)'
+ 'Early-demographic dividend' 'East Asia & Pacific'
+ 'Europe & Central Asia (excluding high income)' 'Europe & Central Asia'
+ 'Ecuador' 'Egypt, Arab Rep.' 'Euro area' 'Eritrea' 'Spain' 'Estonia'
+ 'Ethiopia' 'European Union' 'Fragile and conflict affected situations'
+ 'Finland' 'Fiji' 'France' 'Faroe Islands' 'Micronesia, Fed. Sts.' 'Gabon'
+ 'United Kingdom' 'Georgia' 'Ghana' 'Gibraltar' 'Guinea' 'Gambia, The'
+ 'Guinea-Bissau' 'Equatorial Guinea' 'Greece' 'Grenada' 'Greenland'
+ 'Guatemala' 'Guam' 'Guyana' 'High income' 'Hong Kong SAR, China'
+ 'Honduras' 'Heavily indebted poor countries (HIPC)' 'Croatia' 'Haiti'
+ 'Hungary' 'IBRD only' 'IDA & IBRD total' 'IDA total' 'IDA blend'
+ 'Indonesia' 'IDA only' 'Isle of Man' 'India' 'Not classified' 'Ireland'
+ 'Iran, Islamic Rep.' 'Iraq' 'Iceland' 'Israel' 'Italy' 'Jamaica' 'Jordan'
+ 'Japan' 'Kazakhstan' 'Kenya' 'Kyrgyz Republic' 'Cambodia' 'Kiribati'
+ 'St. Kitts and Nevis' 'Korea, Rep.' 'Kuwait'
+ 'Latin America & Caribbean (excluding high income)' 'Lao PDR' 'Lebanon'
+ 'Liberia' 'Libya' 'St. Lucia' 'Latin America & Caribbean'
+ 'Least developed countries: UN classification' 'Low income'
+ 'Liechtenstein' 'Sri Lanka' 'Lower middle income' 'Low & middle income'
+ 'Lesotho' 'Late-demographic dividend' 'Lithuania' 'Luxembourg' 'Latvia'
+ 'Macao SAR, China' 'St. Martin (French part)' 'Morocco' 'Monaco'
+ 'Moldova' 'Madagascar' 'Maldives' 'Middle East & North Africa' 'Mexico'
+ 'Marshall Islands' 'Middle income' 'North Macedonia' 'Mali' 'Malta'
+ 'Myanmar' 'Middle East & North Africa (excluding high income)'
+ 'Montenegro' 'Mongolia' 'Northern Mariana Islands' 'Mozambique'
+ 'Mauritania' 'Mauritius' 'Malawi' 'Malaysia' 'North America' 'Namibia'
+ 'New Caledonia' 'Niger' 'Nigeria' 'Nicaragua' 'Netherlands' 'Norway'
+ 'Nepal' 'Nauru' 'New Zealand' 'OECD members' 'Oman' 'Other small states'
+ 'Pakistan' 'Panama' 'Peru' 'Philippines' 'Palau' 'Papua New Guinea'
+ 'Poland' 'Pre-demographic dividend' 'Puerto Rico'
+ "Korea, Dem. People's Rep." 'Portugal' 'Paraguay' 'West Bank and Gaza'
+ 'Pacific island small states' 'Post-demographic dividend'
+ 'French Polynesia' 'Qatar' 'Romania' 'Russian Federation' 'Rwanda'
+ 'South Asia' 'Saudi Arabia' 'Sudan' 'Senegal' 'Singapore'
+ 'Solomon Islands' 'Sierra Leone' 'El Salvador' 'San Marino' 'Somalia'
+ 'Serbia' 'Sub-Saharan Africa (excluding high income)' 'South Sudan'
+ 'Sub-Saharan Africa' 'Small states' 'Sao Tome and Principe' 'Suriname'
+ 'Slovak Republic' 'Slovenia' 'Sweden' 'Eswatini'
+ 'Sint Maarten (Dutch part)' 'Seychelles' 'Syrian Arab Republic'
+ 'Turks and Caicos Islands' 'Chad'
+ 'East Asia & Pacific (IDA & IBRD countries)'
+ 'Europe & Central Asia (IDA & IBRD countries)' 'Togo' 'Thailand'
+ 'Tajikistan' 'Turkmenistan'
+ 'Latin America & the Caribbean (IDA & IBRD countries)' 'Timor-Leste'
+ 'Middle East & North Africa (IDA & IBRD countries)' 'Tonga'
+ 'South Asia (IDA & IBRD)' 'Sub-Saharan Africa (IDA & IBRD countries)'
+ 'Trinidad and Tobago' 'Tunisia' 'Turkiye' 'Tuvalu' 'Tanzania' 'Uganda'
+ 'Ukraine' 'Upper middle income' 'Uruguay' 'United States' 'Uzbekistan'
+ 'St. Vincent and the Grenadines' 'Venezuela, RB' 'British Virgin Islands'
+ 'Virgin Islands (U.S.)' 'Viet Nam' 'Vanuatu' 'World' 'Samoa' 'Kosovo'
+ 'Yemen, Rep.' 'South Africa' 'Zambia' 'Zimbabwe']
+      Country Name Country Code     Indicator Name Indicator Code  \
+40           China          CHN  Population, total    SP.POP.TOTL   
+109          India          IND  Population, total    SP.POP.TOTL   
+251  United States          USA  Population, total    SP.POP.TOTL   
+
+            1960         1961         1962         1963         1964  \
+40   667070000.0  660330000.0  665770000.0  682335000.0  698355000.0   
+109  445954579.0  456351876.0  467024193.0  477933619.0  489059309.0   
+251  180671000.0  183691000.0  186538000.0  189242000.0  191889000.0   
+
+            1965  ...          2013          2014          2015          2016  \
+40   715185000.0  ...  1.363240e+09  1.371860e+09  1.379860e+09  1.387790e+09   
+109  500114346.0  ...  1.291132e+09  1.307247e+09  1.322867e+09  1.338636e+09   
+251  194303000.0  ...  3.160599e+08  3.183863e+08  3.207390e+08  3.230718e+08   
+
+             2017          2018          2019          2020          2021  \
+40   1.396215e+09  1.402760e+09  1.407745e+09  1.411100e+09  1.412360e+09   
+109  1.354196e+09  1.369003e+09  1.383112e+09  1.396387e+09  1.407564e+09   
+251  3.251221e+08  3.268382e+08  3.283300e+08  3.315115e+08  3.320316e+08   
+
+             2022  
+40   1.412175e+09  
+109  1.417173e+09  
+251  3.332876e+08  
+
+[3 rows x 67 columns]
+40     1.204855e+09
+109    9.642791e+08
+251    2.662780e+08
+Name: 1995, dtype: float64
+float64
+0
